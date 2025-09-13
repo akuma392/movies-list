@@ -12,6 +12,9 @@ import Signup from "./components/Auth/Signup";
 import { ThemeContextProvider } from "./components/contextApi/ThemeContext";
 import { AuthProvider, useAuth } from "./components/contextApi/AuthContext";
 import Layout from "./components/Pages/Layout";
+import SingleMoviePage from "./components/Pages/SingleMoviePage";
+import ErrorBoundary from "./components/common/ErrorBoundary";
+import NotFound from "./components/common/NotFound";
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -24,24 +27,28 @@ const App = () => {
       <AuthProvider>
         <Router>
 
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/movies" element={<Movies />} />
-              <Route path="/tvseries" element={<TVSeries />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <Profile />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </Layout>
+          <ErrorBoundary>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/movies" element={<Movies />} />
+                <Route path="/tvseries" element={<TVSeries />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/movies/:movieId" element={<SingleMoviePage />} />
+                <Route
+                  path="/profile"
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
 
+            </Layout>
+          </ErrorBoundary>
         </Router>
       </AuthProvider>
     </ThemeContextProvider >

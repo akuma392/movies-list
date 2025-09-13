@@ -4,10 +4,10 @@ import {
     , Typography, FormControl, InputLabel, Select, MenuItem
 } from "@mui/material";
 import MovieCard from "./MovieCards";
-import { fetchData } from "../../utils/apiUtility";
+import { fetchData, getFullUrl } from "../../utils/apiUtility";
 import Loader from "../common/Loader";
 import LocalStorageUtil from "../../utils/LocalStorageUtil";
-import { BASE_URL, categories } from "../../constant/constant";
+import { categories, } from "../../constant/constant";
 
 // const sampleMovies = [
 //     { title: "Inception", plot: "A mind-bending thriller", imdb: "8.8", image: "https://m.media-amazon.com/images/M/MV5BMjExYTY3YTUtZDQzOC00NTVmLWFhOWQtMGI5ZWUxYTY0MjgyXkEyXkFqcGc@.jpg" },
@@ -77,21 +77,11 @@ const Movies = () => {
         setLoading(true);
         const cacheKey = `movies_${category}`;
 
-        // 1. Check cache
-        const cachedData = LocalStorageUtil.get(cacheKey);
-        if (cachedData) {
-            console.log("Loaded from cache:", category);
-            setSampleMovies(cachedData);
-            setLoading(false);
-            setPage(1);
-            return;
-        }
-        // Fetch movie data from API
         const getMovies = async () => {
             const selectedCategory = categories.find(cat => cat.value === category);
-            const url = selectedCategory.country ? `${BASE_URL}${selectedCategory?.country}/${category}` : `${BASE_URL}${category}`;
-            const movies = await fetchData(url);
-            LocalStorageUtil.set(cacheKey, movies, 48 * 60 * 60 * 1000);
+
+            const url = selectedCategory.country ? getFullUrl(`${selectedCategory?.country}/${category}`) : getFullUrl(category);
+            const movies = await fetchData(url, cacheKey, 48 * 60 * 60 * 1000);
             setSampleMovies(movies);
             setLoading(false);
         };
