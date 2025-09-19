@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 class ErrorBoundary extends React.Component {
     constructor(props) {
@@ -44,6 +44,7 @@ class ErrorBoundary extends React.Component {
                         component={Link}
                         to="/"
                         sx={{ mt: 2 }}
+                        onClick={() => Navigate("/")}
                     >
                         Go Home
                     </Button>

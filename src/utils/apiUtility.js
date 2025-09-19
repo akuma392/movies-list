@@ -41,3 +41,4 @@ async function fetchData(movieUrl = url, cacheKey = "moviesSearch", ttl = 24 * 6
 }
 
 export { fetchData, getFullUrl };
+

@@ -15,6 +15,7 @@ import Layout from "./components/Pages/Layout";
 import SingleMoviePage from "./components/Pages/SingleMoviePage";
 import ErrorBoundary from "./components/common/ErrorBoundary";
 import NotFound from "./components/common/NotFound";
+import WhereToWatch from "./components/Pages/WhereToWatch";
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -35,6 +36,7 @@ const App = () => {
                 <Route path="/tvseries" element={<TVSeries />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/movies/where-to-watch" element={<WhereToWatch />} />
                 <Route path="/movies/:movieId" element={<SingleMoviePage />} />
                 <Route
                   path="/profile"

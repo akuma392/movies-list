@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useLocation, useParams } from "react-router-dom";
+import { lang } from "../../constant/constant";
 
 const SingleMoviePage = () => {
     const [movie, setMovie] = useState(null);
@@ -190,7 +191,7 @@ const SingleMoviePage = () => {
                                 Filming Locations
                             </Typography>
                             <Stack direction="row" spacing={1} flexWrap="wrap" mb={2}>
-                                {movie.filmingLocations.map((g, idx) => (
+                                {movie.filmingLocations?.map((g, idx) => (
                                     <Chip key={idx} label={g} variant="outlined" />
                                 ))}
                             </Stack>
@@ -208,7 +209,7 @@ const SingleMoviePage = () => {
                             <Divider sx={{ my: 1 }} />
 
                             {/* External Links */}
-                            {movie.externalLinks.length > 0 && (
+                            {movie.externalLinks?.length > 0 && (
                                 <>
                                     <Typography
                                         variant="subtitle1"
@@ -237,6 +238,15 @@ const SingleMoviePage = () => {
                                     ))}
                                 </>
                             )}
+                            {/* Languges */}
+                            <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+                                Languges
+                            </Typography>
+                            <Stack direction="row" spacing={1} flexWrap="wrap" mb={2}>
+                                {movie?.spokenLanguages?.map((g, idx) => (
+                                    <Chip key={idx} label={lang[g] || g} color={idx === 1 ? "success" : "default"} size="small" />
+                                ))}
+                            </Stack>
                         </Box>
                     </Box>
                 </Grid>

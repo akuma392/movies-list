@@ -41,7 +41,6 @@ const Home = () => {
         setQuery(value);
         debouncedSearch(value);
     };
-    console.log("Search Results>>>>>>>>:", movies);
 
     return (
         <div>

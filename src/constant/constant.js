@@ -11,5 +11,27 @@ const categories = [
     { label: "Top Rated Malayalam Movies", value: "top-rated-malayalam-movies", country: "india" },
     { label: "Top Rated Indian Movies", value: "top-rated-indian-movies", country: "india" },
 ];
+const lang = {
+    hi: "Hindi",
+    en: "English",
+    ta: "Tamil",
+    te: "Telugu",
+    ml: "Malayalam",
+    fr: "French",
+    de: "German",
+    es: "Spanish",
+    it: "Italian",
+    ja: "Japanese",
+    ko: "Korean",
+    cn: "Chinese",
+    kn: "Kannada",
+    mr: "Marathi",
+    pa: "Punjabi",
+    gu: "Gujarati",
+    ur: "Urdu",
+    ru: "Russian",
+    ar: "Arabic",
+    fa: "Persian",
+}
 
-export { BASE_URL, categories };
+export { BASE_URL, categories, lang };
