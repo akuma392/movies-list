@@ -27,7 +27,6 @@ const App = () => {
     <ThemeContextProvider>
       <AuthProvider>
         <Router>
-
           <ErrorBoundary>
             <Layout>
               <Routes>
@@ -48,7 +47,6 @@ const App = () => {
                 />
                 <Route path="*" element={<NotFound />} />
               </Routes>
-
             </Layout>
           </ErrorBoundary>
         </Router>
